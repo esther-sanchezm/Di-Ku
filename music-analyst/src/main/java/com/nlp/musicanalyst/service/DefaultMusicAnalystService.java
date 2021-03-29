@@ -60,6 +60,6 @@ public class DefaultMusicAnalystService implements MusicAnalystService {
     }
     
     private String parsePercentage(double value){
-        return String.valueOf(Math.round(value) * PERCENTAGE).concat(SYMBOL_PERCENTAGE);
+        return String.valueOf((double)Math.round(value * PERCENTAGE));
     }
 }
