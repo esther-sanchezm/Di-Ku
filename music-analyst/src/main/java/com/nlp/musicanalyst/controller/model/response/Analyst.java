@@ -1,6 +1,6 @@
-package com.nlp.musicanalyst.model.response;
+package com.nlp.musicanalyst.controller.model.response;
 
-import com.nlp.musicanalyst.model.response.detail.DetailSentimentAnalyst;
+import com.nlp.musicanalyst.controller.model.response.detail.DetailSentimentAnalyst;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

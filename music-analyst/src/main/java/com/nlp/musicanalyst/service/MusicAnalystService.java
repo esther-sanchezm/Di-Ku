@@ -1,8 +1,8 @@
 package com.nlp.musicanalyst.service;
 
-import com.nlp.musicanalyst.model.response.Analyst;
+import com.nlp.musicanalyst.controller.model.response.Analyst;
 
 public interface MusicAnalystService {
 
-    Analyst sentimentAnalyst(String text);
+    Analyst sentimentAnalyst();
 }

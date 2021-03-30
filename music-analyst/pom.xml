@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<edu.stanford.nlp.stanford-corenlp>4.2.0</edu.stanford.nlp.stanford-corenlp>
+		<org.springframework.cloud.spring-cloud-starter-openfeign.version>3.0.2</org.springframework.cloud.spring-cloud-starter-openfeign.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,7 +43,8 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+		
+		<!-- Spring boot test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -54,7 +56,25 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Spring cloud open feign  -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>${org.springframework.cloud.spring-cloud-starter-openfeign.version}</version>
+		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

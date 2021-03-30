@@ -1,7 +1,7 @@
 package com.nlp.musicanalyst.service;
 
-import com.nlp.musicanalyst.model.response.Analyst;
-import com.nlp.musicanalyst.model.response.detail.DetailSentimentAnalyst;
+import com.nlp.musicanalyst.controller.model.response.Analyst;
+import com.nlp.musicanalyst.controller.model.response.detail.DetailSentimentAnalyst;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -34,7 +34,11 @@ public class DefaultMusicAnalystService implements MusicAnalystService {
     }
     
     @Override
-    public Analyst sentimentAnalyst(String text){
+    public Analyst sentimentAnalyst(){
+        
+        String text = "";
+        //TODO: call feign client
+        
         Analyst sentimentAnalyst = new Analyst();
         // run all Annotators on the text
         Annotation annotation = getPipelineStanfordCoreNLP( "tokenize, ssplit, parse, sentiment").process(text);
