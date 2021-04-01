@@ -1,7 +1,7 @@
-package com.nlp.musicanalyst.controller;
+package com.nlp.musicanalyst.core.controller;
 
-import com.nlp.musicanalyst.controller.model.response.Analyst;
-import com.nlp.musicanalyst.service.MusicAnalystService;
+import com.nlp.musicanalyst.core.controller.model.response.Analyst;
+import com.nlp.musicanalyst.core.service.AnalystTextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,16 @@ import java.util.List;
 public class DefaultMusicAnalystController implements MusicAnalystController {
     
     @Autowired
-    private MusicAnalystService musicAnalystService;
+    private AnalystTextService analystTextService;
 
     @Override
     public ResponseEntity<Analyst> processSentimentAnalyst( String artist, String song) {
-        return new ResponseEntity<>(musicAnalystService.sentimentAnalyst(),HttpStatus.OK);
+        return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
     }
-    
-   @Override
+
+    @Override
     public ResponseEntity<Analyst> getSentimentAnalyst(String artist, String song) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+       return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
     }
 
     @Override

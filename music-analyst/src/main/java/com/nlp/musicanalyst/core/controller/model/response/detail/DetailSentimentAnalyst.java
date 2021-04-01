@@ -1,4 +1,4 @@
-package com.nlp.musicanalyst.controller.model.response.detail;
+package com.nlp.musicanalyst.core.controller.model.response.detail;
 
 import lombok.Builder;
 import lombok.Data;
