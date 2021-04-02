@@ -13,6 +13,8 @@ import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 import org.ejml.simple.SimpleMatrix;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,25 +34,29 @@ public class DefaultMusicAnalystService implements AnalystTextService {
     private static final int NEGATIVE = 1;
     private static final int VERY_NEGATIVE = 0;
 
+    @Value("${token}")
+    private String GENIUS_TOKEN;
+
+    @Autowired
     private GeniusClient geniusClient;
 
-    private StanfordCoreNLP getPipelineStanfordCoreNLP(String annotators){
+    private StanfordCoreNLP getPipelineStanfordCoreNLP(){
         Properties props = new Properties();
-        props.setProperty(ANNOTATORS_KEY, annotators);
+        props.setProperty(ANNOTATORS_KEY, "tokenize, ssplit, parse, sentiment");
         return new StanfordCoreNLP(props);
     }
     
     @Override
-    public Analyst sentimentSongAnalyst(String artist, String song, String token){
-        String text = obtainLyrics(artist, song, token);
-        return processSentimentAnalyst(text, token);
+    public Analyst sentimentSongAnalyst(String artist, String song){
+        String text = obtainLyrics(artist, song);
+        return processSentimentAnalyst(text);
     }
 
     @Override
-    public Analyst processSentimentAnalyst(String text, String token) {
+    public Analyst processSentimentAnalyst(String text) {
         Analyst sentimentAnalyst = new Analyst();
         // run all Annotators on the text
-        Annotation annotation = getPipelineStanfordCoreNLP( "tokenize, ssplit, parse, sentiment").process(text);
+        Annotation annotation = getPipelineStanfordCoreNLP().process(text);
 
         for (CoreMap sentence : annotation.get(CoreAnnotations.SentencesAnnotation.class)) {
             // this is the parse tree of the current sentence
@@ -72,8 +78,8 @@ public class DefaultMusicAnalystService implements AnalystTextService {
         return sentimentAnalyst;
     }
 
-    private String obtainLyrics(String artist, String song, String token) {
-        SearchGeniusResource searchGeniusResource = this.geniusClient.search(token, artist);
+    private String obtainLyrics(String artist, String song) {
+        SearchGeniusResource searchGeniusResource = this.geniusClient.search(GENIUS_TOKEN, artist);
         List<HitsTracksResource> listHits = searchGeniusResource.getResponse().getHits();
         Optional<HitsTracksResource> optionalHitsResponse = listHits.stream()
                 .filter(search -> search.getTitle().equals(song))

@@ -10,13 +10,13 @@ import java.util.List;
 public interface MusicAnalystController {
 
     @PostMapping("/song/sentiment-analyst")
-    ResponseEntity<Analyst> processSentimentAnalyst(@RequestBody String artist, String song, String text, String token);
+    ResponseEntity<Analyst> processSentimentAnalyst(@RequestBody String artist, String song, String text);
 
     @PostMapping("/song/{artist}/{song}/sentiment-analyst")
-    ResponseEntity<Analyst> processSentimentAnalyst(@PathVariable String artist, @PathVariable String song, String token);
+    ResponseEntity<Analyst> processSentimentAnalyst(@PathVariable String artist, @PathVariable String song);
 
     @GetMapping("/song/{artist}/{song}/sentiment-analyst")
-    ResponseEntity<Analyst> getSentimentAnalyst(@PathVariable String artist, @PathVariable String song, String token);
+    ResponseEntity<Analyst> getSentimentAnalyst(@PathVariable String artist, @PathVariable String song);
     
     @GetMapping("/song")
     ResponseEntity<List<Analyst>> findAllSentimentAnalyst(@RequestParam String artist, @RequestParam String song, @RequestParam String sentiment);

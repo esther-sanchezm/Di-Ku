@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
-@FeignClient(value = "genius-client", url = "http://api.genius.com")
+@FeignClient(value = "genius-client", url = "https://api.genius.com")
 public interface GeniusClient {
 
     String AUTH_TOKEN = "Authorization";
