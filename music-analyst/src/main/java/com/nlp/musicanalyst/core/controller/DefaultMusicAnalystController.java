@@ -16,13 +16,18 @@ public class DefaultMusicAnalystController implements MusicAnalystController {
     private AnalystTextService analystTextService;
 
     @Override
-    public ResponseEntity<Analyst> processSentimentAnalyst( String artist, String song) {
-        return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
+    public ResponseEntity<Analyst> processSentimentAnalyst(String artist, String song, String text, String token) {
+        return new ResponseEntity<>(analystTextService.processSentimentAnalyst(text, token),HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Analyst> getSentimentAnalyst(String artist, String song) {
-       return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
+    public ResponseEntity<Analyst> processSentimentAnalyst(String artist, String song, String token) {
+        return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song, token),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Analyst> getSentimentAnalyst(String artist, String song, String token) {
+       return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song, token),HttpStatus.OK);
     }
 
     @Override

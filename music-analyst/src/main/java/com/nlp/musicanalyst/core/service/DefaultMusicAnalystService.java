@@ -41,13 +41,13 @@ public class DefaultMusicAnalystService implements AnalystTextService {
     }
     
     @Override
-    public Analyst sentimentSongAnalyst(String artist, String song){
-        String text = obtainLyrics(artist, song);
-        return processSentimentAnalyst(text);
+    public Analyst sentimentSongAnalyst(String artist, String song, String token){
+        String text = obtainLyrics(artist, song, token);
+        return processSentimentAnalyst(text, token);
     }
 
     @Override
-    public Analyst processSentimentAnalyst(String text) {
+    public Analyst processSentimentAnalyst(String text, String token) {
         Analyst sentimentAnalyst = new Analyst();
         // run all Annotators on the text
         Annotation annotation = getPipelineStanfordCoreNLP( "tokenize, ssplit, parse, sentiment").process(text);
@@ -72,8 +72,8 @@ public class DefaultMusicAnalystService implements AnalystTextService {
         return sentimentAnalyst;
     }
 
-    private String obtainLyrics(String artist, String song) {
-        SearchGeniusResource searchGeniusResource = this.geniusClient.search(artist);
+    private String obtainLyrics(String artist, String song, String token) {
+        SearchGeniusResource searchGeniusResource = this.geniusClient.search(token, artist);
         List<HitsTracksResource> listHits = searchGeniusResource.getResponse().getHits();
         Optional<HitsTracksResource> optionalHitsResponse = listHits.stream()
                 .filter(search -> search.getTitle().equals(song))
