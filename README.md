@@ -1,24 +1,18 @@
 # Sentiment Analyst Musical
 This project looks for songs and recovers the feeling they have that can be: ``very positive``, ``positive``, ``neutral``, ``negative`` or ``very negative``. 
+Feeling attends only of lyrics.
 
-## Operations
+## Process and retrieve song
 
-#### Process song
-
-Example of petition to process song sentiment analyst. That operation retrieve sentiment analyst of that song.
+Example of petition to process retrieve song. That song retrieve must be process before. 
 ```
-    POST http://localhost:8118/song/{artist}/{song}
-```
-#### Retrieve song
-
-Example of petition to retrieve song. That song retrieve must be process before. 
-```
-    GET http://localhost:8118/song/{artist}/{song}
+    GET http://localhost:8118/song/{song}/artist/{artist}
 ```
 
-```
-    GET http://localhost:8118/song?artist={artist}&song={song}&sentiment={sentiment}
-```
+## Dependencies
+Important dependencies that use sentiment analyst musical.
+* **Stanford core NLP**: use for sentiment analyst.
+* **Genius API**: use for retrieve lyrics.
 
 ## How to build this project
 #### Prerrequisites
@@ -28,3 +22,9 @@ Example of petition to retrieve song. That song retrieve must be process before.
 #### Build
 - Maven clean install
 - Spring boot run
+
+### Properties
+Need genius token to search in **Genius**
+```
+    token: ${TOKEN_GENIUS}
+```

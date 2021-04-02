@@ -17,17 +17,8 @@ public class DefaultMusicAnalystController implements MusicAnalystController {
     private AnalystTextService analystTextService;
 
     @Override
-    public ResponseEntity<Analyst> processSentimentAnalyst(String artist, String song) throws IOException {
-        return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
-    }
-
-    @Override
     public ResponseEntity<Analyst> getSentimentAnalyst(String artist, String song) throws IOException {
        return new ResponseEntity<>(analystTextService.sentimentSongAnalyst(artist, song),HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<Analyst>> findAllSentimentAnalyst(String artist, String song, String sentiment) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
 }
