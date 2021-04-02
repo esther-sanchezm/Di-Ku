@@ -12,8 +12,8 @@ public interface GeniusClient {
 
     String AUTH_TOKEN = "Authorization";
 
-    @GetMapping("/search?q={artist}")
-    SearchGeniusResource search(@RequestHeader(AUTH_TOKEN) String bearerToken, @RequestParam String artist);
+    @GetMapping("/search?q={song}")
+    SearchGeniusResource search(@RequestHeader(AUTH_TOKEN) String authorizationHeader, @RequestParam String song);
 
 
 }

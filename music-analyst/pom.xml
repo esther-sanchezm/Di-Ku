@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<edu.stanford.nlp.stanford-corenlp>4.2.0</edu.stanford.nlp.stanford-corenlp>
 		<spring-cloud.version>2020.0.2</spring-cloud.version>
+		<jsoup.version>1.13.1</jsoup.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -56,10 +57,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<!-- Spring cloud open feign  -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<!-- Jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>${jsoup.version}</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

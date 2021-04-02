@@ -1,5 +1,6 @@
 package com.nlp.musicanalyst.core.client.resource.search.response.hits;
 
+import com.nlp.musicanalyst.core.client.resource.search.response.hits.result.ResultGeniusResource;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,10 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HitsTracksResource {
 
-    private String title;
 
-    private Integer id;
+    private ResultGeniusResource result;
 
-    private String url;
 
 }
