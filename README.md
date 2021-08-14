@@ -1,4 +1,4 @@
-# Sentiment Analyst Musical
+# Di Ku - Sentiment Analyst Musical
 This project looks for songs and recovers the feeling they have that can be: ``very positive``, ``positive``, ``neutral``, ``negative`` or ``very negative``. 
 Feeling attends only of lyrics.
 
